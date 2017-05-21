@@ -9,7 +9,11 @@ app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 // Register Routes
-consign().include('app/routes').into(app);
+consign()
+  .include('app/routes')
+  .then('config/dbConnection.js')
+  .then('app/models')
+  .into(app);
 
 // Exports
 module.exports = app;
